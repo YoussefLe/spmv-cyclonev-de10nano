@@ -1,0 +1,33 @@
+/*
+ * spmv_overlay.dts
+ * Device Tree Overlay pour l'accélérateur SpMV
+ * Compatible avec le DE10-Nano (Cyclone V SoC)
+ *
+ * Compilation:
+ *   dtc -O dtb -o spmv_overlay.dtbo -@ spmv_overlay.dts
+ *
+ * Application:
+ *   mkdir -p /sys/kernel/config/device-tree/overlays/spmv
+ *   cat spmv_overlay.dtbo > /sys/kernel/config/device-tree/overlays/spmv/dtbo
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "altr,socfpga-cyclone5";
+
+    fragment@0 {
+        target-path = "/soc/bridge@ff200000";
+
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+            spmv_accel: spmv@0 {
+                compatible = "greenai,spmv-accelerator-1.0";
+                reg = <0x00000000 0x00000040>;
+            };
+        };
+    };
+};
