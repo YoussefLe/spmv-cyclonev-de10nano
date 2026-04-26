@@ -1,4 +1,4 @@
-# 📦 Fichiers à ajouter dans Quartus — Guide Complet
+#  Guide Complet
 
 ## Architecture du projet
 
